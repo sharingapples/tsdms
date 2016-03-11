@@ -1,10 +1,10 @@
 module.exports = {
   attributes: {
     station: {
-      model: 'station'
+      model: 'Station'
     },
     file: {
-      model: 'file'
+      model: 'File'
     }
   }
 }
