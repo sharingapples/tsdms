@@ -4,7 +4,7 @@ var fs = require('fs');
 var path = require('path');
 
 var modelPath = path.resolve(__dirname, '../api/models/');
-var targetDir = path.resolve(__dirname, '../../wscada.net-ui/src/models/');
+var targetDir = path.resolve(__dirname, '../../wscada.net-ui/src/js/models/');
 
 console.log("Model Path: ", modelPath);
 // Read all the files in the api/model directory
@@ -25,15 +25,17 @@ fs.readdir(modelPath, function(err, files) {
  * @source: ${"api/models/" + file}
  */
  module.exports = {
-  attributes: {
+  attributes: [
     `;
       for(var attr in attributes) {
         // Only take attributes that are object and have a property named 'type'
         if(typeof(attributes[attr]) === 'object' && attributes[attr].hasOwnProperty('type')) {
-          content += attr + ":" + JSON.stringify(attributes[attr]) + ",\n    ";
+          var obj = attributes[attr];
+          obj.__name__ = attr;
+          content += JSON.stringify(attributes[attr]) + ",\n    ";
         }
       }
-      content += "}\n}";
+      content += "]\n}";
 
       fs.writeFile(targetDir + '/' + file, content, function(err) {
         if (err) {
