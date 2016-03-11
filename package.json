@@ -1,0 +1,22 @@
+{
+  "name": "wscada.net-server",
+  "version": "0.1.0",
+  "description": "WSCADA.NET Time Series Software",
+  "main": "app.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://syaau@bitbucket.org/sharingapples/wscada.net-server.git"
+  },
+  "keywords": [
+    "wscada"
+  ],
+  "author": "Ranjan Shrestha",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/sharingapples/wscada.net-server#readme"
+}
