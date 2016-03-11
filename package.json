@@ -1,9 +1,11 @@
 {
   "name": "wscada.net-server",
   "private": true,
-  "version": "1.0.0",
-  "description": "a Sails application",
-  "keywords": [],
+  "version": "0.1.0",
+  "description": "WSCADA.NET Time Series Software",
+  "keywords": [
+    "wscada"
+  ],
   "dependencies": {
     "bcrypt": "^0.8.5",
     "ejs": "2.3.4",
@@ -38,6 +40,6 @@
     "type": "git",
     "url": "https://bitbucket.org/sharingapples/wscada.net-server.git"
   },
-  "author": "ranjan",
-  "license": ""
+  "author": "Ranjan Shrestha",
+  "license": "SEE LICENSE IN LICENSE"
 }
