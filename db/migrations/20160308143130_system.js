@@ -54,7 +54,9 @@ exports.down = function(knex, Promise) {
     knex.schema.dropTable('user_group')
   ]).then(function() {
     // Drop all the independent tables
-    knex.schema.dropTable('group'),
-    knex.schema.dropTable('user')
+    return Promise.all([
+      knex.schema.dropTable('group'),
+      knex.schema.dropTable('user')
+    ]);
   });
 };

@@ -34,6 +34,8 @@ exports.up = function(knex, Promise) {
       table.integer('regex');
       table.integer('seq');
       table.boolean('flagged');
+      table.timestamp('createdAt').defaultTo(knex.fn.now()).notNullable();
+      table.timestamp('updatedAt').defaultTo(knex.fn.now()).notNullable();
     }),
 
     knex.schema.createTable('file', function(table) {
@@ -42,6 +44,8 @@ exports.up = function(knex, Promise) {
       table.integer('size').notNullable();
       table.integer('type').notNullable();
       table.string('description');
+      table.timestamp('createdAt').defaultTo(knex.fn.now()).notNullable();
+      table.timestamp('updatedAt').defaultTo(knex.fn.now()).notNullable();
     })
   ]).then(function() {
     // Then create all the dependent tables
@@ -62,18 +66,24 @@ exports.up = function(knex, Promise) {
         table.string('value').notNullable();
         table.string('text').notNullable();
         table.integer('seq');
+        table.timestamp('createdAt').defaultTo(knex.fn.now()).notNullable();
+        table.timestamp('updatedAt').defaultTo(knex.fn.now()).notNullable();
       }),
       knex.schema.createTable('station_meta_data', function(table) {
         table.increments().primary();
         table.integer('station_id').notNullable().references('station.id');
         table.integer('meta_data_id').notNullable().references('meta_data.id');
         table.string('value').notNullable();
+        table.timestamp('createdAt').defaultTo(knex.fn.now()).notNullable();
+        table.timestamp('updatedAt').defaultTo(knex.fn.now()).notNullable();
         table.unique(['station_id', 'meta_data_id'])
       }),
 
       knex.schema.createTable('station_file', function(table) {
         table.integer('station_id').notNullable().references('station.id');
         table.integer('file_id').notNullable().references('file.id');
+        table.timestamp('createdAt').defaultTo(knex.fn.now()).notNullable();
+        table.timestamp('updatedAt').defaultTo(knex.fn.now()).notNullable();
         table.primary(['station_id', 'file_id']);
       })
     ]);
