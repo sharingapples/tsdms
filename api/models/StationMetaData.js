@@ -1,13 +1,13 @@
 module.exports = {
   attributes: {
     station: {
-      model: 'station'
+      model: 'Station'
     },
     metaData: {
-      model: 'meta_data'
+      model: 'MetaData'
     },
     value: {
-      type: text
+      type: 'text',
       required: true
     }
   }

@@ -1,10 +1,10 @@
 module.exports = {
   attributes: {
     tag: {
-      model: 'tag'
+      model: 'Tag'
     },
     station: {
-      model: 'station'
+      model: 'Station'
     },
     uniqueId: {
       type: 'string'
