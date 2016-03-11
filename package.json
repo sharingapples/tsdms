@@ -41,5 +41,8 @@
     "url": "https://bitbucket.org/sharingapples/wscada.net-server.git"
   },
   "author": "Ranjan Shrestha",
-  "license": "SEE LICENSE IN LICENSE"
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "md5": "^2.1.0"
+  }
 }
