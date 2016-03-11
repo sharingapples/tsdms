@@ -21,6 +21,9 @@ module.exports.policies = {
   // Protect all the controllers
   '*': 'sessionAuth',
 
+  // Temporary allow StationController
+  StationController: true,
+
   // Allow the login page
   UserController: {
     'login': true,

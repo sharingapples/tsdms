@@ -60,7 +60,7 @@ module.exports = {
 
 	login: function(req, res) {
 		var returnUrl = req.header('referer');
-		if (returnUrl.endsWith('/login')) {
+		if (!returnUrl ||  returnUrl.endsWith('/login')) {
 			returnUrl = '/';
 		}
 		return res.login({
