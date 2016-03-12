@@ -34,7 +34,7 @@ fs.readdir(modelPath, function(err, files) {
         // Let's see if the target exists
         if (fs.existsSync(targetFile)) {
           const targetModel = require(targetFile);
-          if (!options.forced && targetModel.__hash__ === hash) {
+          if (!options.forced && targetModel.hash === hash) {
             return "No change";
           }
 
