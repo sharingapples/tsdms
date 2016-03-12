@@ -3,51 +3,32 @@ module.exports = {
     identifier: {
       type: 'string',
       required: true,
-      unique: true,
-
-      __caption__: "ID",
-      __description__: "A unique identifier that identifies this station"
+      unique: true
     },
 
     name: {
       type: 'string',
-      required: true,
-
-      __caption__: "Name",
-      __description__: "A human readable name for the station"
-    },
-
-    longitude: {
-      type: 'float',
-
-      __caption__: "Longitude",
-      __suffix__: "°E"
+      required: true
     },
 
     latitude: {
-      type: 'float',
+      type: 'float'
+    },
 
-      __caption__: "Latitude",
-      __suffix__: "°N"
+    longitude: {
+      type: 'float'
     },
 
     elevation: {
-      type: 'float',
-
-      __caption__: "Elevation",
-      __suffix__: "m"
+      type: 'float'
     },
 
     description: {
-      type: 'string',
-
-      __caption__: "Description"
+      type: 'string'
     },
 
     established: {
-      type: 'date',
-
-      __caption__: "Established"
+      type: 'date'
     }
   }
 }
