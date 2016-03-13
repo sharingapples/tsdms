@@ -3,8 +3,8 @@ module.exports = {
     station: {
       model: 'Station'
     },
-    file: {
-      model: 'File'
+    resource: {
+      model: 'Resource'
     }
   }
 }

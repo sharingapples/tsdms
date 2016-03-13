@@ -38,7 +38,7 @@ exports.up = function(knex, Promise) {
       table.timestamp('updatedAt').defaultTo(knex.fn.now()).notNullable();
     }),
 
-    knex.schema.createTable('file', function(table) {
+    knex.schema.createTable('resource', function(table) {
       table.increments().primary();
       table.string('name').unique().notNullable();
       table.integer('size').notNullable();
@@ -79,12 +79,12 @@ exports.up = function(knex, Promise) {
         table.unique(['station_id', 'meta_data_id'])
       }),
 
-      knex.schema.createTable('station_file', function(table) {
+      knex.schema.createTable('station_resource', function(table) {
         table.integer('station_id').notNullable().references('station.id');
-        table.integer('file_id').notNullable().references('file.id');
+        table.integer('resource_id').notNullable().references('resource.id');
         table.timestamp('createdAt').defaultTo(knex.fn.now()).notNullable();
         table.timestamp('updatedAt').defaultTo(knex.fn.now()).notNullable();
-        table.primary(['station_id', 'file_id']);
+        table.primary(['station_id', 'resource_id']);
       })
     ]);
   });
@@ -94,13 +94,13 @@ exports.down = function(knex, Promise) {
   // First drop all the table for which there are no dependencies
   return Promise.all([
     knex.schema.dropTable('tag_station'),
-    knex.schema.dropTable('station_file'),
+    knex.schema.dropTable('station_resource'),
     knex.schema.dropTable('meta_data_option'),
     knex.schema.dropTable('station_meta_data'),
   ]).then(function() {
     // Finally all the core tables
     return Promise.all([
-      knex.schema.dropTable('file'),
+      knex.schema.dropTable('resource'),
       knex.schema.dropTable('meta_data'),
       knex.schema.dropTable('tag'),
       knex.schema.dropTable('station')
