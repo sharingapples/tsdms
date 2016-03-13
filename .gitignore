@@ -117,3 +117,8 @@ npm-debug.log
 nbproject
 .idea
 .node_history
+
+################################################
+# Workbench backup files
+################################################
+/db/*.bak
