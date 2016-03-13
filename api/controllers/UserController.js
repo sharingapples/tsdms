@@ -52,7 +52,7 @@ module.exports = {
 					});
 				});
 			} else {
-				console.log("Forward request from react-router - ", req.url);
+				console.log("Forward request from react-router - ", req.url, req.session.me);
 				next();
 			}
 		});

@@ -36,7 +36,7 @@ module.exports.routes = {
   'post /login': 'UserController.login',
   '/logout': 'UserController.logout',
 
-  'get /*': 'UserController.home'
+  'get /': 'UserController.home'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
