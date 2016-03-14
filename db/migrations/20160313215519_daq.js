@@ -9,6 +9,14 @@ exports.up = function(knex, Promise) {
     table.string('description');
     addStandardColumns(knex, table);
   }).then(function() {
+    return knex.schema.createTable('data_source_parameter', function(table) {
+      table.increments().primary();
+      table.integer('data_source_id').notNullable().references('data_source.id');
+      table.integer('parameter_id').notNullable().references('parameter.id');
+      table.string('code').notNullable();
+      table.integer('parameter_unit_id').notNullable().references('parameter_unit.id');
+    });
+  }).then(function() {
     return knex.schema.createTable('data_origin', function(table) {
       table.increments().primary();
       table.integer('data_source_id').notNullable().references('data_source.id');
@@ -114,6 +122,8 @@ exports.down = function(knex, Promise) {
     return knex.schema.dropTable('station_data_origin');
   }).then(function() {
     return knex.schema.dropTable('data_origin');
+  }).then(function() {
+    return knex.schema.dropTable('data_source_parameter');
   }).then(function() {
     return knex.schema.dropTable('data_source');
   });
