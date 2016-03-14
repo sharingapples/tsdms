@@ -16,3 +16,8 @@ $ ln -s ../../wscada.net-ui/lib/ node_modules/wscada-ui
 ```
 
 #### Production
+# Install node.js
+> apt-get install node
+curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+sudo apt-get install -y nodejs
+#
