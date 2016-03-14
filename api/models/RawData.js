@@ -17,7 +17,7 @@ module.exports = {
       required: true
     },
     value: {
-      type: float
+      type: 'float'
     },
     flag: {
       type: "integer",
