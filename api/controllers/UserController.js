@@ -11,6 +11,9 @@ var renderToString = require('react-dom/server').renderToString;
 var ReactRouter = require('react-router');
 var match = ReactRouter.match;
 var RouterContext = ReactRouter.RouterContext;
+var dataProviderLib = require('wscada-ui/lib/DataProvider');
+var DataProvider = dataProviderLib.default;
+var ModelCacheNode = dataProviderLib.ModelCacheNode;
 var router = require('wscada-ui/router');
 var routes = router.routes;
 var Application = router.Application;
@@ -41,15 +44,36 @@ module.exports = {
 						});
 					}
 
-					res.view('react', {
-						user: user.toJSON(),
-						data: { },
-						html: renderToString(
-							React.createElement(Application, {user: user},
-								React.createElement(RouterContext, renderProps)
-							)
-						)
-					});
+					var dataProvider = new DataProvider( function(data) {
+						if (data === null) {
+							console.log("Server Side Data :: ", dataProvider.toJSON());
+							res.view('react', {
+								user: user.toJSON(),
+								data: dataProvider.toJSON(),
+								html: renderToString(reactElement)
+							})
+						}
+					}, ModelCacheNode);
+
+					var reactElement = React.createElement(Application, {
+							user: user,
+							dataProvider: dataProvider
+						}, React.createElement(RouterContext, renderProps)
+					);
+
+					var dummy = renderToString(reactElement);
+					//sconsole.log("Dummy Render: ", dummy);
+
+					//
+					// res.view('react', {
+					// 	user: user.toJSON(),
+					// 	data: { },
+					// 	html: renderToString(
+					// 		React.createElement(Application, {user: user, dataProvider: new DataProvider()},
+					// 			React.createElement(RouterContext, renderProps)
+					// 		)
+					// 	)
+					// });
 				});
 			} else {
 				console.log("Forward request from react-router - ", req.url, req.session.me);
@@ -61,7 +85,7 @@ module.exports = {
 	login: function(req, res) {
 		var returnUrl = req.header('referer');
 		if (!returnUrl ||  returnUrl.endsWith('/login')) {
-			returnUrl = '/';
+			returnUrl = '/wscada/';
 		}
 		return res.login({
 			username: req.param('username'),
