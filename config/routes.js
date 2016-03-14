@@ -36,7 +36,11 @@ module.exports.routes = {
   'post /login': 'UserController.login',
   '/logout': 'UserController.logout',
 
-  'get /': 'UserController.home'
+  'get /wscada/*': 'UserController.home',
+  'get /': function(req, res) {
+    res.redirect('/wscada/');
+  }
+  
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
