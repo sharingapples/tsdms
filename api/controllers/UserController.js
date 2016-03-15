@@ -65,6 +65,14 @@ module.exports = {
 					);
 
 					var dummy = renderToString(reactElement);
+					console.warn("Data Provider waits on: ", dataProvider.getDeferredModelsCount());
+					if (dataProvider.getDeferredModelsCount() == 0) {
+						res.view('react', {
+							user: user.toJSON(),
+							data: dataProvider.toJSON(),
+							html: dummy
+						});
+					}
 					//sconsole.log("Dummy Render: ", dummy);
 
 					//
