@@ -44,14 +44,17 @@ module.exports = {
 						});
 					}
 
+					var start = Date.now();
+
 					var dataProvider = new DataProvider( function(data) {
 						if (data === null) {
-							console.log("Server Side Data :: ", dataProvider.toJSON());
+							console.log("Page Render First Pass Generation took ", (Date.now() - start));
 							res.view('react', {
 								user: user.toJSON(),
 								data: dataProvider.toJSON(),
 								html: renderToString(reactElement)
 							})
+							console.log("Page Render Second Pass Generation took ", (Date.now() - start));
 						}
 					}, ModelCacheNode);
 
