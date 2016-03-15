@@ -1,6 +1,9 @@
 module.exports = {
+  tableName: "meta_data_options",
+
   attributes: {
     metaData: {
+      columnName: "meta_data_id",
       model: 'MetaData',
     },
     value: {

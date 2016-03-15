@@ -1,6 +1,9 @@
 module.exports = {
+  tableName: "data_origin_parameter",
+
   attributes: {
     dataOrigin: {
+      columnName: "data_origin_id",
       model: "DataOrigin",
       required: true
     },
@@ -9,14 +12,17 @@ module.exports = {
       required: true
     },
     parameter: {
+      columnName: "parameter_id",
       model: "Parameter",
       required: true
     },
     parameterUnit: {
+      columnName: "parameter_id",
       model: "ParameterUnit",
       required: true
     },
     isDiagnostic: {
+      columnName: "is_diagnostic",
       type: "boolean"
     }
   }

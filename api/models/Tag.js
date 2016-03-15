@@ -1,4 +1,6 @@
 module.exports = {
+  tableName: "tag",
+
   attributes: {
     name: {
       type: 'string',
@@ -8,6 +10,7 @@ module.exports = {
       type: 'string'
     },
     providesUniqueness: {
+      columnName: "provides_uniqueness",
       type: 'boolean'
     },
     starred: {

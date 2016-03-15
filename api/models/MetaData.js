@@ -1,4 +1,6 @@
 module.exports = {
+  tableName: "meta_data",
+
   attributes: {
     name: {
       type: 'string',
@@ -13,6 +15,7 @@ module.exports = {
       type: 'string'
     },
     validationRegex: {
+      columnName: "validation_regex",
       type: 'string'
     },
     seq: {

@@ -1,4 +1,6 @@
 module.exports = {
+  tableName: "raw_data",
+
   attributes: {
     request: {
       model: "Request",

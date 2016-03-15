@@ -1,4 +1,6 @@
 module.exports = {
+  tableName: "parameter",
+
   attributes: {
     code: {
       type: "string",
@@ -13,6 +15,7 @@ module.exports = {
       type: "string"
     },
     parameterType: {
+      columnName: "parameter_type_id",
       model: "ParameterType",
       required: true
     }

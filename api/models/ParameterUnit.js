@@ -1,4 +1,6 @@
 module.exports = {
+  tableName: "parameter_unit",
+  
   attributes: {
     name: {
       type: 'string',
