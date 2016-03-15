@@ -78,6 +78,7 @@ exports.up = function(knex, Promise) {
   }).then(function() {
     return knex.schema.createTable('request', function(table) {
       table.increments().primary();
+      table.integer('daq_processor_id').notNullable().references('daq_processor.id');
       table.string('payload').notNullable();
       table.boolean('payload_is_file').notNullable();
       addStandardColumns(knex, table);
