@@ -7,10 +7,12 @@ module.exports = {
       required: true
     },
     originCode: {
+      columnName: "origin_code",
       type: "string",
       required: true
     },
     parameterCode: {
+      columnName: "parameter_code",
       type: "string",
       required: true
     },
