@@ -1,4 +1,6 @@
 module.exports = {
+  tableName: "resource",
+
   attributes: {
     name: {
       type: 'string',

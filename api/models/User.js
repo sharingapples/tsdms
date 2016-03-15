@@ -8,7 +8,8 @@
 var bcrypt = require('bcrypt');
 
 module.exports = {
-
+  columnName: "user",
+  
   attributes: {
     username: {
       type: 'string',

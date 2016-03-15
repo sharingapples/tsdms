@@ -1,4 +1,6 @@
 module.exports = {
+  tableName: "station",
+  
   attributes: {
     identifier: {
       type: 'string',

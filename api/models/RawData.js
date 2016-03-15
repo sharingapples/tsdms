@@ -1,14 +1,18 @@
 module.exports = {
+  tableName: "raw_data",
+
   attributes: {
     request: {
       model: "Request",
       required: true
     },
     originCode: {
+      columnName: "origin_code",
       type: "string",
       required: true
     },
     parameterCode: {
+      columnName: "parameter_code",
       type: "string",
       required: true
     },

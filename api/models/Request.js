@@ -1,6 +1,9 @@
 module.exports = {
+  tableName: "request",
+
   attributes: {
     daqProcessor: {
+      columnName: "daq_processor_id",
       model: "DaqProcessor",
       required: true
     },
@@ -9,6 +12,7 @@ module.exports = {
       required: true,
     },
     payloadIsFile: {
+      columnName: "payload_is_file",
       type: "boolean",
       required: true
     }

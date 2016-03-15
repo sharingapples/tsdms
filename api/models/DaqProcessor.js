@@ -1,6 +1,9 @@
 module.exports = {
+  tableName: "daq_processor",
+
   attributes: {
     dataSource: {
+      columnName: "data_source_id",
       model: "DataSource",
       required: true
     },

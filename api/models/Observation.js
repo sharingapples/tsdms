@@ -1,6 +1,9 @@
 module.exports = {
+  tableName: "observation",
+
   attributes: {
     dataSeries: {
+      columnName: "data_series_id",
       model: "DataSeries",
       required: true,
     },
