@@ -15,6 +15,7 @@ exports.up = function(knex, Promise) {
       table.integer('parameter_id').notNullable().references('parameter.id');
       table.string('code').notNullable();
       table.integer('parameter_unit_id').notNullable().references('parameter_unit.id');
+      addStandardColumns(knex, table);
     });
   }).then(function() {
     return knex.schema.createTable('data_origin', function(table) {

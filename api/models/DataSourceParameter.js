@@ -8,6 +8,7 @@ module.exports = {
       required: true
     },
     parameter: {
+      columnName: "parameter_id",
       model: "Parameter",
       required: true
     },
