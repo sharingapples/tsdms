@@ -82,7 +82,11 @@ function generateOutput(src, target, model, name, hash) {
       const attribute = model.attributes[attr];
       // the attribute definition might consist of functions (sails call them rules)
       // as well, so will avoid that. Only take the property that are text.
-      content += `{\n    name: ${JSON.stringify(attr)}`
+      content += `{\n    name: ${JSON.stringify(attr)}`;
+      // if there is a model attribute but no type attribute then, we keep them same
+      if (attribute.hasOwnProperty('model') && !attribute.hasOwnProperty('type')) {
+        attribute.type = attribute.model;
+      }
       for(let prop in attribute) {
         const value = attribute[prop];
         if (typeof value === "string") {
@@ -91,8 +95,8 @@ function generateOutput(src, target, model, name, hash) {
       }
       content += ",\n    ";
       /* Let's also generate few UI specific attributes like caption */
-      const caption = toTitleCase(attr);
-      content += `\n    __caption: ${JSON.stringify(caption)},`;
+      const label = toTitleCase(attr);
+      content += `\n    label: ${JSON.stringify(label)},`;
       content += "\n  }"
     }
     content += "]\n}\n";
@@ -101,7 +105,8 @@ function generateOutput(src, target, model, name, hash) {
 * Automatially generated Model file for client side (React UI).
 *
 * You can modifiy the attributes to contain UI specific attributes
-* like __caption, __description, __suffix, __prefix, __regex, etc.
+* like label, description, suffix, prefix, etc.
+*
 * However, once you edit this file, this model will not be generated
 * automatically and you will have to manually synchronize this file
 * with the sails Model.
