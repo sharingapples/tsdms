@@ -17,7 +17,7 @@ module.exports = {
       required: true
     },
     parameterUnit: {
-      columnName: "parameter_id",
+      columnName: "parameter_unit_id",
       model: "ParameterUnit",
       required: true
     },
