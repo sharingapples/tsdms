@@ -64,6 +64,7 @@ exports.up = function(knex, Promise) {
     }).then(function() {
       return knex.schema.createTable('daq_processor_filter', function(table) {
         table.increments().primary();
+        table.integer('daq_processor_id').notNullable().references('daq_processor.id');
         table.string('filter').notNullable();
         table.string('value').notNullable();
         addStandardColumns(knex, table);
@@ -71,6 +72,7 @@ exports.up = function(knex, Promise) {
     }).then(function() {
       return knex.schema.createTable('daq_parser_parameter', function(table) {
         table.increments().primary();
+        table.integer('daq_processor_id').notNullable().references('daq_processor.id');
         table.string('parameter').notNullable();
         table.string('value').notNullable();
         addStandardColumns(knex, table);
