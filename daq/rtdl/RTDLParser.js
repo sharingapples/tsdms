@@ -91,6 +91,7 @@ var RTDLPacket = function(buffer) {
   return this;
 }
 
+/* decrypt the given source buffer starting from offset using the aes key starting */
 function decrypt(key, source, offset) {
   if (key === null) {
     return source.slice(offset);
