@@ -1,13 +1,26 @@
 "use strict";
 
+function generateScript(err) {
+  return (
+`session.error("There was an error in the script ");`);
+}
+
 class ScriptParser {
   constructor(options) {
     // eval the script, where we expect it to
-    this.userScript = new Function("session", "stream", "args", options.script);
+    try {
+      this.userScript = new Function("session", "stream", "args", options.script);
+    } catch(err) {
+      this.userScript = new Function("session", "stream", "args", generateScript(err));
+    }
   }
 
   parse(session, stream, args) {
-    this.userScript.call(session, stream, args);
+    try {
+      this.userScript.call(null, session, stream, args);
+    } catch(err) {
+      session.error("An error running script " + err);
+    }
   }
 }
 
