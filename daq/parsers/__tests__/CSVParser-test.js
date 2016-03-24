@@ -26,9 +26,9 @@ describe('CSVParser', () => {
 
       origins: "{{origin}}",
       parameters: "{{parameter}}",
-      datetimes: "{{csv.0}} {{csv.1}}",
+      datetimes: "{{csv.1}} {{csv.2}}",
       formats: "YYYY-MM-DD HH:mm",
-      values: "{{csv.2}}"
+      values: "{{csv.3}}"
     });
     const expectedValues = [
       null, 0, 0.2, null
@@ -55,11 +55,11 @@ describe('CSVParser', () => {
       skipRows: 1,
       nanValue: "999",
 
-      origins: "{{csv.0}}",
-      parameters: "{{header.3}},{{header.4}},{{header.5}},{{header.6}}",
-      datetimes: "{{csv.1}} {{csv.2}}",
+      origins: "{{csv.1}}",
+      parameters: "{{header.4}},{{header.5}},{{header.6}},{{header.7}}",
+      datetimes: "{{csv.2}} {{csv.3}}",
       formats: "YYYY-MM-DD HH:mm",
-      values: "{{csv.3}},{{csv.4}},{{csv.5}},{{csv.6}}"
+      values: "{{csv.4}},{{csv.5}},{{csv.6}},{{csv.7}}"
     });
     const expectedValues = [
       null, 0, 0.2, null
@@ -72,6 +72,6 @@ describe('CSVParser', () => {
       end: function() {
         done();
       }
-    }, stream, { origin: 8019, parameter: 'RF' });
+    }, stream, {  });
   });
 });

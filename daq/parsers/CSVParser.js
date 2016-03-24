@@ -40,9 +40,11 @@ class CSVParser {
           // We found a row to process
           if (headerRow === row) {
             headers = rowText.split(this.separator);
+            headers.unshift(rowText);
           } else if (row >= skipRows) {
             // Now process the data
             const csv = rowText.split(this.separator).map(s => s.trim());
+            csv.unshift(rowText);
             this.process(session, stream, args, headers, csv, row);
           }
           rowText = "";
