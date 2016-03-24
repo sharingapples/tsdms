@@ -32,6 +32,7 @@ class TextParser {
       // First parse out the header if available
       if (this.header) {
         header = this.header.exec(text);
+        text=text.substr(this.header.lastIndex);
       }
 
       let lastIndex = -1;
