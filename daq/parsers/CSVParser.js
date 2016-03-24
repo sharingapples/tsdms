@@ -27,7 +27,7 @@ class CSVParser {
     const skipRows = this.skipRows;
 
     let rowText = "";
-    let row = 0;
+    let row = 1;
     let headers = [];
 
     stream.on('data', (chunk) => {
@@ -41,7 +41,7 @@ class CSVParser {
           if (headerRow === row) {
             headers = rowText.split(this.separator);
             headers.unshift(rowText);
-          } else if (row >= skipRows) {
+          } else if (row > skipRows) {
             // Now process the data
             const csv = rowText.split(this.separator).map(s => s.trim());
             csv.unshift(rowText);

@@ -20,7 +20,7 @@ describe('CSVParser', () => {
     const parser = new CSVParser({
       separator: ",",
       delimiter: "\n",
-      headerRow: 0,
+      headerRow: 1,
       skipRows: 1,
       nanValue: "999",
 
@@ -31,7 +31,7 @@ describe('CSVParser', () => {
       values: "{{csv.3}}"
     });
     const expectedValues = [
-      null, 0, 0.2, null
+      undefined, undefined, 0, 0.2, null
     ];
     const stream = fs.createReadStream(path.resolve(__dirname, 'sample-01.csv'), { encoding: "utf8"});
     parser.parse({
@@ -51,7 +51,7 @@ describe('CSVParser', () => {
     const parser = new CSVParser({
       separator: ",",
       delimiter: "\n",
-      headerRow: 0,
+      headerRow: 1,
       skipRows: 1,
       nanValue: "999",
 
