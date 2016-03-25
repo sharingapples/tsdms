@@ -1,10 +1,12 @@
 "use strict";
 
 const FileProtocol = require('./FileProtocol');
+const HTTPProtocol = require('./HTTPProtocol');
 
 const handler = {
-  onRequest: function(pcol, stream, args) {
+  onRequest: function(req, args) {
     let length = 0;
+    const stream = req.getStream();
 
     stream.on('data', (chunk) => {
       length += chunk.length;
@@ -12,18 +14,17 @@ const handler = {
 
     stream.on('end', () => {
       console.log("Received " + length + " bytes of data from ");
-      console.log(" Path (args.path): ", args.path);
-      console.log(" File (args.filename): ", args.filename);
-      console.log(" Timestamp (args.timestamp): ", args.timestamp);
+      console.log(args);
 
-      // Archive the file at the end
-      pcol.archive(args.path);
+      req.finalize();
     });
   },
 
   onError: function(err) {
-    console.error(err);
+    debugger;
+    console.error("Error ", err);
   }
 }
 
-const pcol = new FileProtocol('./_files', './_archives', handler);
+const fileProtocol = new FileProtocol('./_files', './_archives', handler);
+const httpProtocol = new HTTPProtocol(3000, './_archives', handler);

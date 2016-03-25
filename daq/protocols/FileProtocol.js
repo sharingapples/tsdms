@@ -4,6 +4,31 @@ const chokidar = require('chokidar');
 const fs = require('fs');
 const path = require('path');
 
+class FileRequest {
+  constructor(protocol, basePath) {
+    Object.defineProperties(this, {
+      protocol: { value: protocol },
+      basePath: { value: basePath }
+    });
+  }
+
+  getStream() {
+    return fs.createReadStream(path.resolve(this.protocol.srcFolder, this.basePath));
+  }
+
+  ignore(error) {
+    // TODO: Looks like it would be a good idea to unlink the file here
+  }
+
+  abort(error) {
+    // TODO: Keep log of this error
+  }
+
+  finalize(response) {
+    // This is where the file should be archvied
+    this.protocol.archive(this.basePath);
+  }
+}
 class FileProtocol {
   /**
    * Start the file protocol watching for addition of any files in
@@ -33,8 +58,9 @@ class FileProtocol {
       this._watcher.close();
     }
 
-    console.log("Start watch on ", this.srcFolder);
-    this._watcher = chokidar.watch(this.srcFolder);
+    this._watcher = chokidar.watch(this.srcFolder, {
+      ignored: /[\/\\]\./     // Ignore dot files
+    });
 
     // Register event for file addition
     this._watcher.on('add', (path) => {
@@ -49,7 +75,6 @@ class FileProtocol {
 
     // Register event for folder addition
     this._watcher.on('addDir', (path) => {
-      console.log("New Directory added ", path);
       this._processDir(path);
     });
 
@@ -58,7 +83,13 @@ class FileProtocol {
       if (err) {
         this._handleError(err);
       } else {
-        files.forEach( (file) => this._process(path.resolve(this.srcFolder, file)) );
+        files.forEach( (file) => {
+          // Ignore dot files
+          if (file.startsWith('.')) {
+            return;
+          }
+          this._process(path.resolve(this.srcFolder, file));
+        });
       }
     });
   }
@@ -82,7 +113,9 @@ class FileProtocol {
         path.resolve(this.srcFolder, file),
         path.resolve(destFolder, path.basename(file)),
         (err) => {
-          this.requestHandler.onError(err);
+          if (err) {
+            this._handleError(err);
+          }
         }
       );
     });
@@ -108,18 +141,25 @@ class FileProtocol {
       if (err) {
         this._handleError(err);
       } else {
-        files.forEach(file => this._process(path.resolve(dir, file)));
+        files.forEach(file => {
+          // Ignore dot files
+          if (file.startsWith('.')) {
+            return;
+          }
+          this._process(path.resolve(dir, file));
+        });
       }
     })
   }
 
   // Process file with the given full path
   _processFile(filePath, stats) {
-    console.log("Processing ", filePath);
+    const filename = path.basename(filePath);
     const stream = fs.createReadStream(filePath);
-    this.requestHandler.onRequest(this, stream, {
-      path: filePath.substr(this.srcFolder.length+1),
-      filename: path.basename(filePath),
+    const basePath = filePath.substr(this.srcFolder.length+1);
+    this.requestHandler.onRequest(new FileRequest(this, basePath), {
+      path: basePath,
+      filename: filename,
       timestamp: stats.ctime
     })
   }
@@ -129,10 +169,9 @@ class FileProtocol {
   }
 }
 
+// Create all the directories, similar to java mkdirs() method
 function mkdirs(dir, callback) {
-  console.log("mkdirs ", dir);
   fs.stat(dir, (err, stats) => {
-    console.log(err);
     if (err && err.errno === -2) {
       // ENOENT : No such file or directory
     } else if (err) {
