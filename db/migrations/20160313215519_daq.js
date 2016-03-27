@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     table.increments().primary();
     table.string('name').unique().notNullable();
     table.string('description');
+    table.text('parameters');
     addStandardColumns(knex, table);
   }).then(function() {
     return knex.schema.createTable('data_source_parameter', function(table) {
@@ -23,6 +24,7 @@ exports.up = function(knex, Promise) {
       table.integer('data_source_id').notNullable().references('data_source.id');
       table.string('code').notNullable();
       table.string('timezone').notNullable();
+      table.text('options');
       table.unique(['data_source_id', 'code']);
       addStandardColumns(knex, table);
     })
@@ -52,32 +54,10 @@ exports.up = function(knex, Promise) {
       table.integer('data_source_id').notNullable().references('data_source.id');
       table.string('protocol').notNullable();
       table.string('parser').notNullable();
+      table.text('protocol_filter').notNullable();
+      table.text('parser_parameters').notNullable();
       addStandardColumns(knex, table);
-    }).then(function() {
-      return knex.schema.createTable('daq_processor_parameter', function(table) {
-        table.increments().primary();
-        table.integer('daq_processor_id').notNullable().references('daq_processor.id');
-        table.string('parameter').notNullable();
-        table.string('value').notNullable();
-        addStandardColumns(knex, table);
-      });
-    }).then(function() {
-      return knex.schema.createTable('daq_processor_filter', function(table) {
-        table.increments().primary();
-        table.integer('daq_processor_id').notNullable().references('daq_processor.id');
-        table.string('filter').notNullable();
-        table.string('value').notNullable();
-        addStandardColumns(knex, table);
-      });
-    }).then(function() {
-      return knex.schema.createTable('daq_parser_parameter', function(table) {
-        table.increments().primary();
-        table.integer('daq_processor_id').notNullable().references('daq_processor.id');
-        table.string('parameter').notNullable();
-        table.string('value').notNullable();
-        addStandardColumns(knex, table);
-      });
-    })
+    });
   }).then(function() {
     return knex.schema.createTable('request', function(table) {
       table.increments().primary();
@@ -89,35 +69,21 @@ exports.up = function(knex, Promise) {
   }).then(function() {
     return knex.schema.createTable('raw_data', function(table) {
       table.increments().primary();
+      table.integer('request_id').notNullable().references('request.id');
+      table.integer('data_origin_parameter_id').notNullable().references('data_origin_parameter.id');
       table.string('origin_code').notNullable();
       table.string('parameter_code').notNullable();
       table.date('time').notNullable();
       table.float('value');
       table.integer('flag').notNullable();
       addStandardColumns(knex, table);
-    }).then(function() {
-      return knex.schema.createTable('origin_data', function(table) {
-        table.increments().primary();
-        table.integer('raw_data_id').notNullable().references('raw_data.id');
-        table.integer('data_origin_parameter_id').notNullable().references('data_origin_parameter.id');
-        table.integer('flag').notNullable();
-        addStandardColumns(knex, table);
-      })
     })
   })
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('origin_data').then(function() {
-    return knex.schema.dropTable('raw_data');
-  }).then(function() {
+  return knex.schema.dropTable('raw_data').then(function() {
     return knex.schema.dropTable('request');
-  }).then(function() {
-    return Promise.all([
-      knex.schema.dropTable('daq_parser_parameter'),
-      knex.schema.dropTable('daq_processor_parameter'),
-      knex.schema.dropTable('daq_processor_filter'),
-    ]);
   }).then(function() {
     return knex.schema.dropTable('daq_processor');
   }).then(function() {
