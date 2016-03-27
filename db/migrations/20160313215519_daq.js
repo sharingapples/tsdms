@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
     table.increments().primary();
     table.string('name').unique().notNullable();
     table.string('description');
-    table.text('parameters');
+    table.text('attributes');
     addStandardColumns(knex, table);
   }).then(function() {
     return knex.schema.createTable('data_source_parameter', function(table) {

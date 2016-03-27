@@ -1,6 +1,6 @@
 module.exports = {
   tableName: "data_source",
-  
+
   attributes: {
     name: {
       type: 'string',
@@ -9,6 +9,10 @@ module.exports = {
     },
     description: {
       type: 'string'
+    },
+    attributes: {
+      type: 'string',
+      required: true
     }
   }
 }

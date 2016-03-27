@@ -14,6 +14,14 @@ module.exports = {
     parser: {
       type: "string",
       required: true
+    },
+    protocol_filter: {
+      type: "string",
+      required: true
+    },
+    parser_filter: {
+      type: "string",
+      required: true
     }
   }
 }
