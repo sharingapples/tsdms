@@ -9,10 +9,6 @@ module.exports = {
     },
     description: {
       type: 'string'
-    },
-    attributes: {
-      type: 'string',
-      required: true
     }
   }
 }
