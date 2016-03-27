@@ -13,6 +13,9 @@ module.exports = {
     },
     timezone: {
       type: "string"
+    },
+    options: {
+      type: "string"
     }
   }
 }

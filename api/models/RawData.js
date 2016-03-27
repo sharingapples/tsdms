@@ -3,7 +3,13 @@ module.exports = {
 
   attributes: {
     request: {
+      columnaNmae: "request_id",
       model: "Request",
+      required: true
+    },
+    dataOriginParameter: {
+      columnName: "data_origin_parameter_id",
+      model: "DataOriginParameter",
       required: true
     },
     originCode: {
