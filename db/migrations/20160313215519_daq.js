@@ -27,6 +27,7 @@ exports.up = function(knex, Promise) {
       table.string('label').notNullable();
       table.string('description');
       table.string('options');
+      addStandardColumns(knex, table);
     });
   }).then(function() {
     return knex.schema.createTable('data_origin', function(table) {
