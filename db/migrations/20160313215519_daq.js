@@ -7,7 +7,6 @@ exports.up = function(knex, Promise) {
     table.increments().primary();
     table.string('name').unique().notNullable();
     table.string('description');
-    table.text('attributes');
     addStandardColumns(knex, table);
   }).then(function() {
     return knex.schema.createTable('data_source_parameter', function(table) {
@@ -17,6 +16,17 @@ exports.up = function(knex, Promise) {
       table.string('code').notNullable();
       table.integer('parameter_unit_id').notNullable().references('parameter_unit.id');
       addStandardColumns(knex, table);
+    });
+  }).then(function() {
+    return knex.schema.createTable('data_source_attribute', function(table) {
+      table.increments().primary();
+      table.integer('data_source_id').notNullable().references('data_source.id');
+      table.string('name').notNullable();
+      table.string('type').notNullable();
+      table.bool('required').notNullable();
+      table.string('label').notNullable();
+      table.string('description');
+      table.string('options');
     });
   }).then(function() {
     return knex.schema.createTable('data_origin', function(table) {
@@ -94,6 +104,8 @@ exports.down = function(knex, Promise) {
     return knex.schema.dropTable('data_origin');
   }).then(function() {
     return knex.schema.dropTable('data_source_parameter');
+  }).then(function() {
+    return knex.schema.dropTable('data_source_attribute');
   }).then(function() {
     return knex.schema.dropTable('data_source');
   });
