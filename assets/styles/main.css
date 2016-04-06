@@ -1,0 +1,58 @@
+html, body, #workspace, .main {
+  height: 100%;
+}
+
+body {
+  background: #eee;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.navigation-dock {
+  height: 100%;
+}
+
+.content {
+  flex: 1 1 auto;
+}
+
+.top .ui.menu {
+  border-radius: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+  box-shadow: 0;
+  background: white;
+}
+
+.top-bar {
+  display: flex;
+  background: white;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 1px solid #eee;
+}
+.secondary-nav {
+  background: white;
+}
+
+.top-bar > * {
+  padding: 5px;
+}
+
+.top-bar .ui.menu {
+  flex: 1 100%;
+}
+
+.content-body {
+  padding: 1em;
+}
+.login {
+  height: 100%;
+}
+.login .column {
+  max-width: 450px;
+}

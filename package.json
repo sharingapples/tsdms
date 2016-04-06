@@ -1,10 +1,10 @@
 {
-  "name": "wscada.net-server",
-  "private": true,
+  "name": "tsdms",
   "version": "0.1.0",
-  "description": "WSCADA.NET Time Series Software",
+  "description": "Time Series Data Management System",
   "keywords": [
-    "wscada"
+    "Time Series Data",
+    "DMS"
   ],
   "dependencies": {
     "aes-js": "^0.2.4",
@@ -38,19 +38,34 @@
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
-    "test": "jest"
+    "test": "jest",
+    "setup": "sails-migrations migrate"
   },
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/sharingapples/wscada.net-server.git"
+    "url": "https://github.com/sharingapples/tsdms.git"
   },
   "author": "Ranjan Shrestha",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/sharingapples/wscada.net-server#readme",
+  "license": "MIT",
+  "homepage": "https://tsdms.github.com/",
   "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.6.5",
     "babel-jest": "^9.0.3",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
     "jest-cli": "^0.9.2",
-    "md5": "^2.1.0"
+    "jquery": "^2.2.2",
+    "less-loader": "^2.2.3",
+    "md5": "^2.1.0",
+    "semantic-ui": "^2.1.8",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.12.14"
   }
 }
