@@ -122,3 +122,15 @@ nbproject
 # Workbench backup files
 ################################################
 /db/*.bak
+
+
+################################################
+# webpack bundle generated for server side
+################################################
+/react/server.generated.js
+
+################################################
+# assets folder contains mostly generated
+# files, but other files are added manually
+################################################
+/assets/
