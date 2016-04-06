@@ -28,14 +28,15 @@ module.exports = [{
       jQuery: "jquery"    /* the jQuery used by bootstrap */
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'NODE': false
     }),
   ],
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
           presets: [ 'stage-0', 'es2015', 'react' ]
@@ -85,14 +86,15 @@ module.exports = [{
       jQuery: "jquery"    /* the jQuery used by bootstrap */
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'NODE': true
     }),
   ],
   module :{
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
           presets: [ 'stage-0', 'es2015', 'react' ]
