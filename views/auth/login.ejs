@@ -1,39 +1,26 @@
-<div class="login-box">
-  <div class="login-logo">
-    <b>Wscada</b>.NET
-  </div>
-  <div class="login-box-body">
-    <p class="login-box-msg">Login to start your session</p>
-    <form method="post" action="/login">
-      <% if (typeof message !== 'undefined') { %>
-        <div class="alert alert-danger alert-dismissible fade in" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <%= message %>
-        </div>
-      <% } %>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" name="username" placeholder="Username"
-                  value="<%= typeof username === 'undefined' ? '' : username %>" />
-        <span class="glyphicon glyphicon-envelope form-control-feedback" />
+<div class="ui middle aligned center aligned grid login">
+  <div class="column">
+    <h2 class="ui black image header">
+      <img class="image" src="/assets/img/logo_32.png" />
+      <div class="content">
+        Log-in to your account
       </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password"
-                  name="password" />
-        <span class="glyphicon glyphicon-lock form-control-feedback" />
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="remember" /> Remember Me
-            </label>
+    </h2>
+    <form action="/login" method="POST" class="ui large form">
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="username" placeholder="Username" />
           </div>
         </div>
-        <div class="col-xs-4">
-          <button class="btn btn-primary btn-sm btn-block" type="submit">Login</button>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Password" />
+          </div>
         </div>
+        <button type="submit" class="ui fluid large black submit button">Login</button>
       </div>
     </form>
   </div>
