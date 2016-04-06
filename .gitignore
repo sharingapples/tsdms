@@ -134,3 +134,8 @@ nbproject
 # files, but other files are added manually
 ################################################
 /assets/
+
+################################################
+# archive folder where daq archives files
+################################################
+/_archives/
