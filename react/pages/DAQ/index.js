@@ -1,11 +1,18 @@
 import React from 'react';
+
 import DataSourcePage from './DataSourcePage';
 import DataLoggerPage from './DataLoggerPage';
 import ProtocolPage from './ProtocolPage';
 
+import { ModelView } from 'react-sails';
+
 class DAQ extends React.Component {
   render() {
-    return <div>DAQ - Display Raw Data Here</div>
+    return (
+      <div>
+        <ModelView header="Data Requests" />
+      </div>
+    );
   }
 }
 
