@@ -34,14 +34,13 @@
     "react-sails": "^0.1.1",
     "react-semantic-form": "^0.1.1",
     "sails": "~0.12.1",
-    "sails-disk": "~0.10.9",
-    "sails-migrations": "^2.0.8"
+    "sails-disk": "~0.10.9"
   },
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
     "test": "jest",
-    "setup": "sails-migrations migrate"
+    "setup": "./node_modules/.bin/sails-migrations migrate"
   },
   "main": "app.js",
   "repository": {
@@ -66,6 +65,7 @@
     "jquery": "^2.2.2",
     "less-loader": "^2.2.3",
     "md5": "^2.1.0",
+    "sails-migrations": "^2.0.8",
     "semantic-ui": "^2.1.8",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.14"
