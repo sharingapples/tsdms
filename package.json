@@ -31,7 +31,7 @@
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-router": "^2.4.1",
-    "react-sails": "^0.1.1",
+    "react-sails": "^0.1.0",
     "react-semantic-form": "^0.1.2",
     "sails": "~0.12.1",
     "sails-disk": "~0.10.9",
