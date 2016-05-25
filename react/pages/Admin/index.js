@@ -1,10 +1,15 @@
 import React from 'react';
 import ParameterPage from './ParameterPage';
+import { ModelView } from 'react-sails';
+
+import User from '../../models/User';
 
 class Admin extends React.Component {
   render() {
     return (
-      <div>Main administrative page. List the Users.</div>
+      <div>
+        <ModelView header="Active Users" model={User} />
+      </div>
     );
   }
 }
